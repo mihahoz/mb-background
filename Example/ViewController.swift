@@ -208,3 +208,39 @@ extension CustomLocationProvider: CLLocationManagerDelegate {
         delegate?.locationProvider(self, didUpdateHeading: newHeading)
     }
 }
+
+
+
+// MARK: - Without Mapbox
+
+/// Use this View controller instead of the above one, to see that location component is not utilised in the background
+
+//public class ViewController: UIViewController, CLLocationManagerDelegate {
+//
+//    let locationProvider = CLLocationManager()
+//    var bag = Set<AnyCancellable>()
+//
+//    public override func viewDidLoad() {
+//        super.viewDidLoad()
+//
+//        locationProvider.delegate = self
+//
+//        NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)
+//            .receive(on: DispatchQueue.main)
+//            .sink { [unowned self] _ in
+//                self.locationProvider.startUpdatingLocation()
+//            }
+//            .store(in: &bag)
+//
+//        NotificationCenter.default.publisher(for: UIApplication.didEnterBackgroundNotification)
+//            .receive(on: DispatchQueue.main)
+//            .sink { [unowned self] _ in
+//                self.locationProvider.stopUpdatingLocation()
+//            }
+//            .store(in: &bag)
+//    }
+//
+//    public func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        print("-> did update locations: \(locations)")
+//    }
+//}
